@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+	<changeSet id="1" author="pedro">
+		<sql splitStatements="false">
+		  create table livros (
+		  	id serial,
+		  	titulo varchar(50) not null,
+		   	sub_titulo varchar(50),
+		   	editora varchar(50),
+		   	num_paginas integer,
+		   	data_publicacao DATE,
+		   	isbn varchar(20),
+		   	sintese text,
+		   	constraint pk_livro_id primary key (id)
+		  );
+			  
+		  create table autores (
+		  	id serial,
+		  	nome varchar(50) not null,
+		   	livro integer,
+		   	constraint pk_autores_id primary key (id),
+		   	constraint fk_autores_livro foreign key (livro) references livros (id) on delete cascade on update cascade 
+		  );
+		  
+		  create table revisores (
+		  	id serial,
+		  	nome varchar(50) not null,
+		   	livro integer,
+		   	constraint pk_revisores_id primary key (id),
+		   	constraint fk_revisores_livro foreign key (livro) references livros (id) on delete cascade on update cascade 
+		  );
+		</sql>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+		name="jdbc/default"
+		auth="Container"
+		type="javax.sql.DataSource"
+		maxTotal="100"
+		maxIdle="30"
+		maxWaitMillis="10000"
+		username="pedro"
+		password="pedro"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/biblioteca" />
+</Context>
