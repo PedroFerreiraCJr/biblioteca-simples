@@ -23,18 +23,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- Mapeamento da servlet de cadastro de livros -->
-	<servlet>
-		<servlet-name>ServletLivro</servlet-name>
-		<servlet-class>br.com.dotofcodex.biblioteca.web.LivrosServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ServletLivro</servlet-name>
-		<url-pattern>/CadastroLivro</url-pattern>
-	</servlet-mapping>
-
 	<!-- Configuração da internacionalização da aplicação -->
 	<context-param>
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>

@@ -101,8 +101,8 @@
 					          <label for="autores">
 					          	<fmt:message key="home.entity.autores"/>
 					          </label>
-					          <div class="input-group autor">
-						          <input id="autores" name="autores" type="text" class="form-control" placeholder="Autores" title="Autores do livro">
+					          <div class="input-group unremovable">
+						          <input name="autores" type="text" class="form-control" placeholder="Autores" title="Autores do livro">
 						          <input name="id_autor" type="hidden">
 						          <span class="input-group-addon autor_add">
 			               			<a><span class="glyphicon glyphicon-plus"></span></a>
@@ -112,7 +112,12 @@
 								  </span>
 					          </div>
 					          <c:forEach items="${livro.autores}" var="autor">
-					          	<input id="autores" name="autores" type="text" class="form-control autor-removable" value="${autor.nome}" placeholder="Autores" title="Autores do livro">
+					          	<div class="input-group">
+					          		<input name="autores" type="text" class="form-control" value="${autor.nome}" placeholder="Autores" title="Autores do livro">
+					          		<span class="input-group-addon autor_remove">
+				               			<a><span class="glyphicon glyphicon-minus"></span></a>
+									</span>
+					          	</div>
 					          </c:forEach>
 					        </div>
 			       		</div>
@@ -121,8 +126,8 @@
 					          <label for="revisores">
 					          	<fmt:message key="home.entity.revisores"/>
 					          </label>
-					          <div class="input-group autor">
-						          <input id="revisores" name="revisores" type="text" class="form-control" placeholder="Revisores" title="Revisores do livro">
+					          <div class="input-group unremovable">
+						          <input name="revisores" type="text" class="form-control" placeholder="Revisores" title="Revisores do livro">
 						          <input name="id_revisor" type="hidden">
 						          <span class="input-group-addon revisor_add">
 			               			<a><span class="glyphicon glyphicon-plus"></span></a>
@@ -132,7 +137,12 @@
 								  </span>
 					          </div>
 					          <c:forEach items="${livro.revisores}" var="revisor">
-					          	<input id="revisores" name="revisores" type="text" class="form-control revisor-removable" value="${revisor.nome}" placeholder="Revisores" title="Revisores do livro">
+					          	<div class="input-group">
+					          		<input name="revisores" type="text" class="form-control" value="${revisor.nome}" placeholder="Revisores" title="Revisores do livro">
+					          		<span class="input-group-addon revisor_remove">
+			               				<a><span class="glyphicon glyphicon-minus"></span></a>
+								  	</span>
+					          	</div>
 					          </c:forEach>
 					        </div>
 			       		</div>

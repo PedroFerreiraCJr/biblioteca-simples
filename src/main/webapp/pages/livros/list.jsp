@@ -9,12 +9,6 @@
 <head>
 	<%@ include file="/pages/layout/headers.jsp" %>
     <title>Listagem de tarefas</title>
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/boostrap-sortable/css/bootstrap-sortable.css">
-    <style>
-    	.border {
-    		border-bottom: 1px solid black;
-    	}
-    </style>
 </head>
 
 <body>
@@ -27,67 +21,99 @@
 				
 				<h2>Listagem de Livros</h2>
 				
-				<table class="table table-striped table-bordered table-hover sortable">
-			        <thead>
-			          <tr>
-			            <th style="width: 10%;">Titulo</th>
-			            <th style="width: 10%;">Sub Titulo</th>
-			            <th style="width: 10%;">Nª Páginas</th>
-			            <th>Editora</th>
-			            <th style="width: 13%;">Data Publicação</th>
-			            <th style="width: 12%;">ISBN</th>
-			            <th>Autores</th>
-			            <th>Revisores</th>
-			            <th>Sintese</th>
-			            <th data-defaultsort="disabled">Ações</th>
-			          </tr>
-			        </thead>
-			        
-			        <tbody>
-			        	<c:forEach items="${list}" var="livro">
-			        		<tr>
-			        			<td>${livro.titulo}</td>
-			        			<td>${livro.subTitulo}</td>
-			        			<td>${livro.numPaginas}</td>
-			        			<td>${livro.editora}</td>
-			        			<td>
-			        				<fmt:formatDate value="${livro.dataPublicacao}" pattern="dd/MM/yyyy"/>
-			        			</td>
-			        			<td>${livro.isbn}</td>
-			        			<td>
-			        				<c:forEach items="${livro.autores}" var="autor">
-			        					<p class="border">${autor.nome}</p>
-			        				</c:forEach>
-			        			</td>
-			        			<td>
-			        				<c:forEach items="${livro.revisores}" var="revisor">
-			        					<p class="border">${revisor.nome}</p>
-			        				</c:forEach>
-			        			</td>
-			        			<td>${livro.sintese}</td>
-			        			<td>
-			        				<a href="${pageContext.servletContext.contextPath}/CadastroLivro?action=edit&id=${livro.id}">
-										<button type="button" class="btn btn-default" aria-label="Left Align">
-											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
+				  	<table class="table table-bordered ">
+				  		<tbody>
+				        	<c:forEach items="${list}" var="livro">
+								<tr>
+									<th style="width: 15%;">Título</th>
+									<td>${livro.titulo}</td>
+								</tr>
+								<tr>
+									<th>Sub Titulo</th>
+									<td>${livro.subTitulo}</td>
+								</tr>
+								<tr>
+									<th>Nª Páginas</th>
+									<td>${livro.numPaginas}</td>
+								</tr>
+								<tr>
+									<th>Editora</th>
+									<td>${livro.editora}</td>
+								</tr>
+								<tr>
+									<th>Data Publicação</th>
+									<td>
+				        				<fmt:formatDate value="${livro.dataPublicacao}" pattern="dd/MM/yyyy"/>
+				        			</td>
+								</tr>
+								<tr>
+									<th>ISBN</th>
+									<td>${livro.isbn}</td>
+								</tr>
+								<tr>
+									<th>Autores</th>
+									<td>
+				        				<c:forEach items="${livro.autores}" var="autor">
+				        					<p>${autor.nome}</p>
+				        				</c:forEach>
+			        				</td>
+								</tr>
+								<tr>
+									<th>Revisores</th>
+									<td>
+				        				<c:forEach items="${livro.revisores}" var="revisor">
+											<p>${revisor.nome}</p>
+				        				</c:forEach>
+				        			</td>
+								</tr>
+								<tr>
+									<th>Sintese</th>
+									<td>${livro.sintese}</td>
+								</tr>
+								<tr style="text-align: right;">
+									<td></td>
+				        			<td>
+				        				<a href="${pageContext.servletContext.contextPath}/CadastroLivro?action=edit&id=${livro.id}">
+											<button type="button" class="btn btn-default" aria-label="Left Align">
+												<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
+											</button>
+				        				</a>
+			        					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#removeModal" aria-label="Left Align">
+										  <span class="glyphicon glyphicon-remove" aria-hidden="false"></span> Remover
 										</button>
-			        				</a>
-			        				<a href="${pageContext.servletContext.contextPath}/CadastroLivro?action=remove&id=${livro.id}">
-			        					<button type="button" class="btn btn-default" aria-label="Left Align">
-										  <span class="glyphicon glyphicon-remove" aria-hidden="false"></span> Deletar
-										</button>
-			        				</a>
-			        			</td>
-			        		</tr>
-			        	</c:forEach>
-			        </tbody>
-				</table>
+										<div id="removeModal" class="modal fade" role="dialog">
+										  <div class="modal-dialog modal-sm">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal">&times;</button>
+										        <h4 class="modal-title">Aviso</h4>
+										      </div>
+										      <div class="modal-body">
+										        <p>Deseja realmente apagar o livro?</p>
+										      </div>
+										      <div class="modal-footer">
+										      	<button type="button" class="btn btn-default yes-modal" data-id="${livro.id} "data-dismiss="modal">Sim</button>
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+				        			</td>
+				        		</tr>
+				        		<tr>
+				        			<td colspan="2">
+				        			</td>
+				        			<td></td>
+				        		</tr>
+				        	</c:forEach>
+				        </tbody>
+				  	</table>
             </div>
         </div>
 	</div>
 	
 	<%@ include file="/pages/layout/footer.jsp" %>
-	
-	<script src="${pageContext.servletContext.contextPath}/resources/boostrap-sortable/js/bootstrap-sortable.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/custom/js/modal-remove-ebook.js"></script>
 </body>
 
 </html>

@@ -41,14 +41,14 @@ public class LivrosServlet extends HttpServlet {
 
 			String id = request.getParameter("id");
 
-			LivroDAO livroDAO = new LivroDAO(DataSourceImpl.getInstance(JndiDataSourceImpl.class));
-
+			LivroService service = new LivroService();
+			
 			Livro.Builder builder = new Builder(null, null);
 			builder.id(Long.valueOf(id));
 			Livro livro = builder.build();
 			try {
 
-				livro = livroDAO.retrieve(livro);
+				livro = service.retrieve(livro);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
